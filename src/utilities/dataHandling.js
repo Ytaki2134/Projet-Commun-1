@@ -13,6 +13,7 @@ class Data{
             playerData = localStorage.getItem('data');
         }else{
             playerData = this.fixData(JSON.parse(playerData), baseData);
+            localStorage.setItem('data', JSON.stringify(playerData));
         }
         this.playerData = playerData;
     }
