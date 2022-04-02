@@ -1,7 +1,11 @@
 import Data from "./utilities/dataHandling.js";
+import * as apiUtilities from "./utilities/apiUtilities.js";
 
+const attractionsData = await apiUtilities.getAttractions();
 let DataObject = new Data();
 let PlayerData = DataObject.getData();
+
+console.log(attractionsData);
 
 var config = {
     type: Phaser.AUTO,
