@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jsx-dom": "^8.0.1-beta.5",
+    "phaser": "^3.55.2"
+  }
+}

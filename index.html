@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="Game"></div>
+    <div id="Recruit-Menu" style="display: none">
+        <div class="Recruit-Title flex">
+            <h1 class="Menu-Title">
+                Recrutement
+            </h1>
+            <div class="Currency-Holder flex">
+                <img class="Currency-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                    alt="Currency Icon">
+                <h2 class="h-null" id="Currency-Counter">533</h2>
+            </div>
+            <div class="Recruit-Quantity flex">
+                <h2 class="Quantity-Font h-null" id="First-Select">&#215;1
+                    <script>
+                        let firstSelect = document.getElementById('First-Select');
+
+                        firstSelect.on('pointerover', () => {
+                            if (firstSelect && firstSelect.classList === 'Quantity-Font h-null') {
+
+                                firstSelect.classList = 'Select-Quantity Quantity-Font h-null'
+                            }
+                        })
+                    </script>
+                </h2>
+                <h2 class="Quantity-Font h-null" id="Second-Select">&#215;100</h2>
+                <h2 class="Quantity-Font h-null" id="Third-Select">&#215;1k</h2>
+                <h2 class="Quantity-Font h-null" id="Fourth-Select">Max</h2>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown.png" alt="Portrait 1">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">100</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown1.png" alt="Portrait 2">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">250</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown2.png" alt="Portrait 3">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">380</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown3.png" alt="Portrait 4">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">540</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown4.png" alt="Portrait 5">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">800</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown5.png" alt="Portrait 6">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">1400</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown6.png" alt="Portrait 7">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">1850</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img class="Card-Image" src="pictures\unknown7.png" alt="Portrait 8">
+                        <div class="Card-Bottom flex">
+                            <div class="Unit-Cost">
+                                <img class="Cost-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                                    alt="Currency Icon">
+                                <h3 class="h-null" id="Unit-Cost">2500</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="button.js"></script>
+</body>
+
+</html>
