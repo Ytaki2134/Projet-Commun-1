@@ -50,14 +50,15 @@ function enableAll()
 function create ()
 {   
     //Event listener
-    let popup = document.getElementById('construction');
-    let closeButton = document.getElementById("close");
+    // let popup = document.getElementById('construction');
+    // let closeButton = document.getElementById("close");
     let build = document.getElementById("build-button");
-    build.addEventListener("click", construire)
+    if (selectedBuilding != null ){
+    build.addEventListener("click", construire(selectedBuilding))}
 
-    closeButton.addEventListener("click", function(){
-        popup.style.display = 'none';
-    })
+    // closeButton.addEventListener("click", function(){
+    //     popup.style.display = 'none';   
+    // })
 
     
     this.add.image(900, 485, 'background'); 
@@ -84,7 +85,7 @@ function create ()
                      window[obj.name].setFrame(1);
                  }
             }); 
-            console.log(element);
+            //console.log(element);
         })
     }
     let pos = 0;
@@ -106,13 +107,13 @@ function update(){
         PlayerData.lastAward = Date.now();
         let gold = 0;
 
-        console.log(PlayerData.UnlockedBuildings);
+
+        
         for (const [key, value] of Object.entries(PlayerData.UnlockedBuildings)) {
             gold += attractions[value-1].rendings;
         }
         
         PlayerData.Currency.Gold += gold;
-
         DataObject.updateData();
     }
 }
@@ -123,76 +124,80 @@ function checkBuilding(building)
     selectedBuilding = building.id;
     switch (building.status){
         case "build":
-            displayBuildWindow(building);
+            displayBuildWindow(building, selectedBuilding);
             break;
         case "alreadyBuilt":
-            displayUpgradeWindow(building)
+            displayDetails(building);
             break;
     }
 }
-function construire(building,popup){
-
+function construire(building){
+    
     let prix = building.price;
-    if (PlayerData.Currency.Gold >= prix)
+    if (PlayerData.Currency.Gold >= prix && PlayerData.UnlockedBuildings.includes(building.id) == false )
     {
+
         PlayerData.Currency.Gold -= prix;
-        window[building.name].setFrame(1);
-        building.status = "alreadyBuilt";
-        PlayerData.UnlockedBuildings.push(building.id)
-        DataObject.updateData();
-        popup.style.display = 'none';
+
+        if (building.id == selectedBuilding){
+            window[building.name].setFrame(1);
+            building.status = "alreadyBuilt";
+            PlayerData.UnlockedBuildings.push(building.id)
+            DataObject.updateData();
+        }
+        
         
     }
     else
     {
-        popup.style.display = 'none';
-        //window.alert("il vous manque " + (prix - argent) + " or")
+        return;
     }
     enableAll();
 
 }
-function displayBuildWindow (building)
+function displayBuildWindow (building,selectedBuilding)
 {
     
     disableAll();
-
-    let build = document.getElementById("build-button");
-    
-    
-    build.addEventListener("click", () => construire(building,popup))
 
     let popup = document.getElementById('construction');
     if (popup && popup.style.display === 'none' ){
         popup.style.display = 'block';
     }
+    let buildButton = document.getElementById("build-button");
+    buildButton.addEventListener("click", () => {
+        construire(building,buildButton,selectedBuilding)
+        popup.style.display = "none"
+    })
+
+
     document.getElementById("price").innerHTML = "Price : " + building.price + " Gold"
     document.getElementById("name").innerHTML = building.name
     document.getElementById("rendings").innerHTML = "Rendings : " + building.rendings + " Gold per second"
 
-    
-   
 
-    let button = document.getElementById("close");
-    button.addEventListener("click", () => {
+    let closeButton = document.getElementById("close");
+    closeButton.addEventListener("click", () => {
         popup.style.display = 'none'
-        build.removeEventListener("click", () => construire(building,popup))
         enableAll();
     })
     
 
-}
+}   
 
 
-function displayUpgradeWindow (building)
+function displayDetails(building)
 {
     
-    let popup = document.getElementById('upgrade');
-    if (popup && popup.style.display === 'none' ){
-        popup.style.display = 'block';
-    }
-    let button = document.getElementById("close-upgrade");
-    button.addEventListener("click", () => (
-        popup.style.display = 'none'    
+    let popupDetails = document.getElementById("details")
+    popupDetails.style.display = 'block' 
+
+    document.getElementById("name_details").innerHTML = building.name
+    document.getElementById("rendings_details").innerHTML = "Rendings : " + building.rendings + " Gold per second"
+ 
+    let closeDetailsButton = document.getElementById("close-details");
+    closeDetailsButton.addEventListener("click", () => (
+        popupDetails.style.display = 'none'    
     ))
 
 
