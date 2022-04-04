@@ -49,6 +49,18 @@ function create ()
         window[obj.name].setInteractive().on('pointerdown', () => checkBuilding(obj,argent));
 
     });
+    if (PlayerData.UnlockedBuildings != [])
+    {
+        PlayerData.UnlockedBuildings.forEach(element => {
+             attractions.forEach(obj => {
+                 if (element == obj.id)
+                 {
+                     obj.status = "alreadyBuilt";
+                 }
+            }); 
+            console.log(element);
+        })
+    }
     let pos = 0;
     for (const [key, value] of Object.entries(PlayerData.Currency)) {
         let txt = this.add.text(100*pos, 0, key+' : '+value, { font: '"Press Start 2P"' });
@@ -83,9 +95,9 @@ function construire(building,popup,argent){
     let prix = building.price;
     if (PlayerData.Currency.Gold >= prix)
     {
-        console.log(PlayerData.Currency.Gold);
+        //console.log(PlayerData.Currency.Gold);
         PlayerData.Currency.Gold -= prix;
-        console.log(PlayerData.Currency.Gold);
+        //console.log(PlayerData.Currency.Gold);
         building.status = "alreadyBuilt";
         PlayerData.UnlockedBuildings.push(building.id)
         DataObject.updateData();
@@ -127,7 +139,6 @@ function displayUpgradeWindow (building)
     button.addEventListener("click", () => (
         popup.style.display = 'none'    
     ))
-    let build = document.getElementById("upgrade-button");
-    build.addEventListener("click", () => construire(building,popup,argent))
+
 
 }
