@@ -1,8 +1,10 @@
 const baseData = {
     Currency: {
-        Gold: 0,
+        Gold: 1600,
         Crystals: 0,
     },
+    UnlockedBuildings: [],
+    lastAward: Date.now()
 }
 
 class Data{
@@ -12,7 +14,6 @@ class Data{
             localStorage.setItem('data', JSON.stringify(baseData));
             playerData = localStorage.getItem('data');
         }else{
-            console.log("?");
             playerData = this.fixData(JSON.parse(playerData), baseData);
             localStorage.setItem('data', JSON.stringify(playerData));
         }

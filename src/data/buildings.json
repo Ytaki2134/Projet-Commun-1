@@ -1,0 +1,48 @@
+
+
+[   
+    {
+        "id": 1,
+        "name":"dungeon",
+        "status":"build",
+        "image": "field",
+        "price": 10,
+        "pos_x": 400,
+        "pos_y": 500,
+        "rendings": 10
+        
+        
+    },
+    {
+        "id": 2,
+        "name":"wheel",
+        "status":"alreadyBuilt",
+        "image": "field",
+        "price": 10,
+        "pos_x": 200,
+        "pos_y": 200,
+        "rendings": 20
+        
+    },
+    {
+        "id": 3,
+        "name":"yass",
+        "status":"alreadyBuilt",
+        "image": "field",
+        "price": 10,
+        "pos_x": 100,
+        "pos_y": 100,
+        "rendings": 30
+    },
+    {
+        "id": 4,
+        "name":"lessgo",
+        "status":"build",
+        "image": "field",
+        "price": 10,
+        "pos_x": 700,
+        "pos_y": 700,
+        "rendings": 40
+    }
+    
+]
