@@ -3,5 +3,34 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
     <script type="module" src="main.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
+
+<body>
+    <div id="Game"></div>
+    <div id="Recruit-Menu" style="display: none">
+        <div class="Recruit-Title flex">
+            <h1 class="Menu-Title">
+                Recrutement
+            </h1>
+            <div class="Currency-Holder flex">
+                <img class="Currency-Icon" src="pictures\3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                    alt="Currency Icon">
+                <h2 class="h-null" id="Currency-Counter"></h2>
+            </div>
+            <div class="Recruit-Quantity flex">
+                <h2 class="Quantity-Font h-null" id="First-Select">&#215;1</h2>
+                <h2 class="Quantity-Font h-null" id="Second-Select">&#215;100</h2>
+                <h2 class="Quantity-Font h-null" id="Third-Select">&#215;1k</h2>
+                <h2 class="Quantity-Font h-null" id="Fourth-Select">Max</h2>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="row" id="Card-Wrapper">
+                <script type="module" src="minions.js"></script>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
