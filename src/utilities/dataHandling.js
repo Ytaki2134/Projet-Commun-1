@@ -1,7 +1,18 @@
 const baseData = {
     Currency: {
-        Gold: 0,
+        Gold: 1840,
         Crystals: 0,
+    },
+    Troops: {
+        Troop1: 0,
+        Troop2: 0,
+        Troop3: 0,
+        Troop4: 0,
+        Troop5: 0,
+        Troop6: 0,
+        Troop7: 0,
+        Troop8: 0,
+        Troop9: 0,
     },
 }
 
