@@ -1,7 +1,7 @@
 .popup  {
     display:block;
-    width:300px;
-    height: 200px;
+    width:500;
+    height: 500;
     padding: 5px 20px 20px 10px;
     position: fixed;
     top:calc(50% - 100px);
