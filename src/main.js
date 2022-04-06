@@ -1,41 +1,78 @@
 import Data from "./utilities/dataHandling.js";
 import * as apiUtilities from "./utilities/apiUtilities.js";
-//hi
+import { MAX_ZOOM, MIN_ZOOM } from "./utilities/global.js";
+
+const LAYERS = 4;
 const attractions = await apiUtilities.getAttractions();
 
 let DataObject = new Data();
 let PlayerData = DataObject.getData();
 
+var text;
+
 let selectedBuilding = null;
 
 var config = {
-    type: Phaser.AUTO,
-    width: 1920,
-    height: 1080,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 200 }
-        }
-    },
+    type: Phaser.WEBGL,
+    width: 800,
+    height: 600,
+    backgroundColor: '#2d2d2d',
+    parent: 'phaser-example',
     scene: {
         preload: preload,
         create: create,
         update: update
-    }
+    },
 };
 
 var game = new Phaser.Game(config);
 function preload ()
 {
     //this.load.setBaseURL('http://labs .phaser.io');
-    this.load.image('background', 'image/background.png');
     this.load.image('field', 'image/field.png');
     this.load.image('built', 'image/built.png');
+
+	this.load.image('base_tiles', 'public/assets/tiles.png')
+
+	// load the JSON file
+	this.load.tilemapTiledJSON('map', 'public/assets/map.json')
+
+   
 }
 
 function create ()
 {   
+    //camera
+    var cam = this.cameras.main;
+
+    cam.setZoom(0.3);
+
+    this.input.on("pointermove", function (p) {
+        if (!p.isDown) return;
+
+        cam.scrollX -= (p.x - p.prevPosition.x) / cam.zoom;
+        cam.scrollY -= (p.y - p.prevPosition.y) / cam.zoom;
+    });
+
+    this.input.on('wheel', function (pointer, gameObjects, deltaX, deltaY, deltaZ) {
+        let newZoom = cam._zoomY;
+        console.log(cam._zoomY, deltaY);
+        if(deltaY>0 && cam._zoomY < MAX_ZOOM){
+            newZoom += 0.05;
+        }else if(deltaY<0 && cam._zoomY > MIN_ZOOM){
+            newZoom -= 0.05;
+        }
+        cam.setZoom(newZoom);
+    });
+
+    //map
+    var map = this.add.tilemap('map');
+
+    var tileset1 = map.addTilesetImage('tiles', 'base_tiles');
+    for (let i=1; i<LAYERS; i++) {
+        map.createLayer('Tile Layer ' + i, [tileset1]);
+    }
+
     //Event listener
     let popup = document.getElementById('construction');
     let closeButton = document.getElementById("close");
@@ -47,7 +84,6 @@ function create ()
     })
 
     var argent = 1500; // simulation de l'argent de l'utilisateur
-    this.add.image(900, 485, 'background'); 
 
     attractions.forEach(obj => {
         console.log(obj.name);
@@ -85,19 +121,6 @@ function create ()
 }
 
 function update(){
-    if(Date.now() - PlayerData.lastAward > 1000){
-        PlayerData.lastAward = Date.now();
-        let gold = 0;
-
-        console.log(PlayerData.UnlockedBuildings);
-        for (const [key, value] of Object.entries(PlayerData.UnlockedBuildings)) {
-            gold += attractions[value-1].rendings;
-        }
-        
-        PlayerData.Currency.Gold += gold;
-
-        DataObject.updateData();
-    }
 }
 
 
