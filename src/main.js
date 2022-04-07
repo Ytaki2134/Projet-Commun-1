@@ -53,6 +53,16 @@ function create() {
         DataObject.updateData(); //update
     }, 2000);
 
+    Currency.addEventListener('DOMSubtreeModified', function () {
+        var MutationObserver = window.MutationObserver
+            || window.WebKitMutationObserver
+            || window.MozMutationObserver;
+        var observer = new MutationObserver(function () {
+            CardRefresh();
+        });
+        observer.observe(Currency, { childList: true });
+    });
+
     var recruitButton = this.add.image(400, 300, 'buttonSprite', 0).setInteractive();
     var recruitButtonReverse = this.add.image(400, 300, 'buttonSpriteReverse', 0).setInteractive();
 
@@ -76,15 +86,58 @@ function create() {
 
     });
 
+    let element = document.getElementById('Recruit-Menu')
+
     recruitButtonReverse.on('pointerup', () => {
 
-        let element = document.getElementById('Recruit-Menu')
         if (element && element.style.display === 'none') {
 
             element.style.display = 'block';
+            DataObject.updateData();
+            CardRefresh();
 
         }
     });
+
+    var Selections = document.getElementsByClassName('Quantity-Font h-null');
+
+    var SelectMultiplier = 1;
+
+    for (let i = 0; i < Selections.length; i++) {
+        Selections[i].addEventListener("click", (checkSelect) => {
+            var Selected = document.getElementsByClassName('Quantity-Font h-null Select-Quantity');
+            if (Selected[0] != null) {
+                Selected[0].classList.remove("Select-Quantity");
+            }
+            var Selection = checkSelect.target;
+
+            switch (Selection.id) {
+                case "First-Select":
+                    Selection.className = "Quantity-Font h-null Select-Quantity";
+                    SelectMultiplier = 1;
+                    CardRefresh();
+                    break;
+                case "Second-Select":
+                    Selection.className = "Quantity-Font h-null Select-Quantity";
+                    SelectMultiplier = 10;
+                    CardRefresh();
+                    break;
+                default:
+                    console.log("Error, something happened during selection")
+            }
+        })
+    }
+
+    //Closing System for Recruit Menu
+
+    document.onclick = function (checkHit) {
+        var hit = checkHit.target;
+        if (hit.tagName == 'CANVAS' && element.style.display === 'block') {
+            element.style.display = 'none';
+        }
+    };
+
+    //Automated Generation of Recruit Cards 
 
     let MainWrapper = document.getElementById("Card-Wrapper");
 
@@ -104,70 +157,9 @@ function create() {
         });
 
         var card = create("div", {
-            className: "card"
+            className: "card",
+            id: "card"
         });
-
-        function TroopIncrement(id) {
-            switch (id) {
-                case "1":
-                    console.log("Troop 1");
-                    PlayerData.Troops.Troop1 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "2":
-                    console.log("Troop 2");
-                    PlayerData.Troops.Troop2 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "3":
-                    console.log("Troop 3");
-                    PlayerData.Troops.Troop3 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "4":
-                    console.log("Troop 4");
-                    PlayerData.Troops.Troop4 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "5":
-                    console.log("Troop 5");
-                    PlayerData.Troops.Troop5 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "6":
-                    console.log("Troop 6");
-                    PlayerData.Troops.Troop6 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "7":
-                    console.log("Troop 7");
-                    PlayerData.Troops.Troop7 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "8":
-                    console.log("Troop 8");
-                    PlayerData.Troops.Troop8 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                case "9":
-                    console.log("Troop 9");
-                    PlayerData.Troops.Troop9 += 1;
-                    console.log(PlayerData.Troops);
-                    break;
-                default:
-                    console.log("Error, something happened during incrementation of troops");
-            }
-        }
-
-        if (PlayerData.Currency.Gold < data.price) {
-            card.className += " brightness"
-          } else {
-            card.className = "card"
-            card.addEventListener("click", () => (
-                TroopIncrement(data.id),
-                DataObject.updateData()
-            ));
-          }
 
         var cardImage = create("img", {
             className: "Card-Image",
@@ -191,13 +183,70 @@ function create() {
 
         var Price = create("h3", {
             className: "h-null",
-            id: "Unit-Cost"
+            id: "Unit-Cost",
         })
 
+        Price.setAttribute("name", "Price")
         Price.textContent += data.price;
+
+        //Defining div's children
 
         ac(MainWrapper, ac(column, ac(card, cardImage)));
         ac(MainWrapper, ac(column, ac(card, ac(CardBottom, ac(UnitCost, CostIcon)))));
         ac(UnitCost, Price);
+
+        //LocalStorage Troops Incrementation
+
+        function TroopIncrement(id) {
+            if (AddTroopProcess(PlayerData.Troops["Troop" + id], SelectMultiplier) <= 10) {
+                PlayerData.Troops["Troop" + id] += SelectMultiplier;
+                CardRefresh()
+            } else {
+                return;
+            }
+        }
+
+        function checkCard() {
+            var TroopRecruited = false;
+            var SelectedPrice = MultProcess(data.price, SelectMultiplier)
+            if (AddTroopProcess(PlayerData.Troops["Troop" + data.id], SelectMultiplier) > 10) {
+                card.className = "card brightness";
+            } else if ((PlayerData.Currency.Gold - SelectedPrice) > 0 && TroopRecruited == false && AddTroopProcess(PlayerData.Troops["Troop" + data.id], SelectMultiplier) <= 10) {
+                console.log(PlayerData.Troops)
+                PlayerData.Currency.Gold -= SelectedPrice;
+                TroopIncrement(data.id);
+                DataObject.updateData();
+                TroopRecruited = true;
+                return;
+            }
+        }
+        card.addEventListener("click", checkCard);
     });
+
+    function AddTroopProcess(id, SelectMultiplier) {
+        return id + SelectMultiplier;
+    }
+
+    function MultProcess(num1, num2) {
+        return num1 * num2;
+    }
+
+    function CardRefresh() {
+        var card = document.getElementsByClassName("card");
+        var Price = document.getElementsByName("Price");
+
+        for (let i = 0; i < card.length; i++) {
+
+            var SelectedPrice = MultProcess(minionsData[i].price, SelectMultiplier)
+            Price[i].textContent = SelectedPrice;
+
+            if ((PlayerData.Currency.Gold - Price[i].textContent) < 0 || AddTroopProcess(PlayerData.Troops["Troop" + minionsData[i].id], SelectMultiplier) > 10) {
+
+                card[i].className = "card brightness";
+
+            } else {
+                card[i].className = "card"
+            }
+        }
+    }
 }
