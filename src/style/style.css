@@ -1,13 +1,13 @@
 #Recruit-Menu {
-    display:block;
-    width:500px;
-    height:400px;
-    padding: 5px;
-    position: fixed;
-    top:calc(30% - 100px);
-    left:calc(30% - 150px);
-    background: #95a595;
-  }
+  display: block;
+  width: 500px;
+  height: 400px;
+  padding: 5px;
+  position: fixed;
+  top: calc(30% - 100px);
+  left: calc(30% - 150px);
+  background: #95a595;
+}
 
 .Recruit-Title {
   border-bottom: 1px solid black;
@@ -66,7 +66,8 @@
 
 /* Style the counter cards */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "card" effect */
   height: 100%;
   text-align: center;
   background-color: #f1f1f1;
@@ -82,12 +83,12 @@
   position: relative;
   bottom: 37%;
   text-align: left;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 .Unit-Cost {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   padding: 2px 6px 1px 3px;
   margin: 0 10px;
   background-color: #b49051;
@@ -114,6 +115,52 @@
   border-top: 0px solid;
 }
 
-.brightness { 
-  filter: brightness(0.25); 
+.brightness {
+  filter: brightness(0.25);
+}
+
+
+canvas {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: auto;
+}
+
+.popup {
+  display: block;
+
+  width: 500;
+  height: 500;
+  padding: 5px 20px 20px 10px;
+  position: fixed;
+  top: calc(50% - 200px);
+  left: calc(50% - 150px);
+  background: #ff00ff00;
+}
+
+#details {
+  background: #dcf64600 !important;
+}
+
+#currencies {
+  top:30px;
+  left: 25%
+}
+#currencies #materials-amount{
+  position:absolute;
+  left: 25%;
+  top: 30px;
+}
+
+#currencies #money{
+position:absolute;
+left: 35%;
+top: 50px;
+}
+
+#currencies #rendings-amount{
+position:absolute;
+left: 45%;
+top: 30px;
 }

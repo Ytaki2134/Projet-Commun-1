@@ -1,7 +1,7 @@
 import * as Global from "../utilities/global.js";
 
 export async function getAttractions(){
-    var url = `${Global.LINK}/Projet-Commun-1/src/data/main.json`;
+    var url = `${Global.LINK}/Projet-Commun-1/src/data/buildings.json`;
 
     const response = await fetch(url, {
         method: 'GET', 
