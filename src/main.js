@@ -1,18 +1,29 @@
-import Data from "./utilities/dataHandling.js";
 import * as apiUtilities from "./utilities/apiUtilities.js";
+import {checkBuilding, DataObject, PlayerData} from "./module/buildings.js"
 
 const attractionsData = await apiUtilities.getAttractions();
 const minionsData = await apiUtilities.getMinions();
-let DataObject = new Data();
-let PlayerData = DataObject.getData();
 let Currency = document.getElementById("Currency-Counter");
 
 console.log(PlayerData)
 
+function update() {
+    if (Date.now() - PlayerData.lastAward > 1000) {
+        PlayerData.lastAward = Date.now();
+        let gold = 0;
+        for (const [key, value] of Object.entries(PlayerData.UnlockedBuildings)) {
+            gold += attractionsData[value - 1].rendings;
+        }
+
+        PlayerData.Currency.Gold += gold;
+        DataObject.updateData();
+    }
+}
+
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     physics: {
         default: 'arcade',
         arcade: {
@@ -21,32 +32,90 @@ var config = {
     },
     scene: {
         preload: preload,
-        create: create
-    }
+        create: create,
+        update: update
+    },
+    
 };
 
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('buttonSprite', 'pictures/Vector-Button-Transparent-PNG.png');
-    this.load.image('buttonSpriteReverse', 'pictures/Vector-Button-Reversed-Transparent-PNG.png')
+    this.load.image('background', 'image/background.png');
+    this.load.image('popup', 'image/minion-parchemin.png');
+    this.load.image('stable', 'image/construction.png');
+    this.load.image('materialButton', 'image/parchemin1.png');
+    this.load.image('kamos', 'image/parchemin2.png');
+    this.load.image('pop', 'image/parchemin3.png');
+    this.load.spritesheet('building', 'image/building.01.png', { frameWidth: 791, frameHeight: 676 });
 }
 
 function create() {
-    Currency.textContent += PlayerData.Currency.Gold;
+
+    let popupWindow = this.add.image(600, 400, 'popup');
+    popupWindow.setScale(0.40)
+    popupWindow.setDepth(5)
+    popupWindow.setVisible(false)
+
+    let popupStable = this.add.image(600, 700, 'stable')
+    popupStable.setScale(0.40)
+    popupStable.setDepth(5)
+    popupStable.setVisible(false)
+
+    let popup = [popupWindow, popupStable]
+
+    let materialButton = this.add.image(125, 50, 'materialButton');
+    materialButton.setScale(0.45)
+    materialButton.setDepth(2)
+
+    let kamos = this.add.image(325, 50, 'kamos');
+    kamos.setScale(0.45)
+    kamos.setDepth(2)
+
+    let population = this.add.image(525, 50, 'pop');
+    population.setScale(0.45)
+    population.setDepth(2)
+
+    attractionsData.forEach(obj => {
+        console.log(obj.name);
+        window[obj.name] = this.add.sprite(
+            obj.pos_x,
+            obj.pos_y,
+            obj.image);
+        window[obj.name].setInteractive().on('pointerdown', () => checkBuilding(obj, popup));
+        window[obj.name].setFrame(0);
+        window[obj.name].setScale(.30);
+
+
+    });
+
+    if (PlayerData.UnlockedBuildings != []) {
+        PlayerData.UnlockedBuildings.forEach(element => {
+            attractionsData.forEach(obj => {
+                if (element == obj.id) {
+                    obj.status = "alreadyBuilt";
+                    window[obj.name].setFrame(1);
+                }
+            });
+        })
+    }
 
     let pos = 0;
     for (const [key, value] of Object.entries(PlayerData.Currency)) {
         let txt = this.add.text(100 * pos, 0, key + ' : ' + value, { font: '"Press Start 2P"' });
         pos += 1;
-
         DataObject.On(key, function (newValue) {
             txt.setText(key + ' : ' + newValue);
             if (key === "Gold") {
                 Currency.innerHTML = PlayerData.Currency.Gold;
             }
+            if (key === "Crystals") {
+                //ICI update le text
+            }
         })
     }
+
+    Currency.textContent += PlayerData.Currency.Gold;
 
     setTimeout(() => {
         PlayerData.Currency.Gold += 1; //set value
@@ -177,7 +246,7 @@ function create() {
 
         var CostIcon = create("img", {
             className: "Cost-Icon",
-            src: "pictures/3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png",
+            src: "image/3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png",
             alt: "Currency Icon"
         });
 
