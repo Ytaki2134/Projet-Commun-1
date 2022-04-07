@@ -6,11 +6,14 @@
         "image": "field",
         "image_src": "./image/built.png",
         "price": 1000,
-        "pos_x": 1408,
-        "pos_y": 3008,
-        "rendings": 500
-        
-        
+        "pos_x": 1000,
+        "pos_y": 900,
+        "rendings": 500,
+        "materials" : {
+            "Bronze": 20,
+            "Silver" : 20
+        },
+        "expedition_time": 5  
     },
     {
         "id": 2,
@@ -21,7 +24,11 @@
         "price": 200,
         "pos_x": 200,
         "pos_y": 200,
-        "rendings": 20
+        "rendings": 20,
+        "materials" : {
+            "Bronze": 20,
+            "Silver" : 20
+        }
         
     },
     {
@@ -33,7 +40,11 @@
         "price": 1000,
         "pos_x": 100,
         "pos_y": 100,
-        "rendings": 1651
+        "rendings": 1651,
+        "materials" : {
+            "Bronze": 20,
+            "Silver" : 20
+        }
     },
     {
         "id": 4,
@@ -44,7 +55,10 @@
         "price": 1500,
         "pos_x": 700,
         "pos_y": 700,
-        "rendings": 89
+        "rendings": 89,
+        "materials" : {
+            "Bronze": 20,
+            "Silver" : 20
+        }
     }
-    
 ]

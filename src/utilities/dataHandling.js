@@ -1,11 +1,27 @@
 const baseData = {
     Currency: {
-        Gold: 1600,
+        Gold: 3000,
         Crystals: 0,
+    },
+    Troops: {
+        Troop1: 0,
+        Troop2: 0,
+        Troop3: 0,
+        Troop4: 0,
+        Troop5: 0,
+        Troop6: 0,
+        Troop7: 0,
+        Troop8: 0,
+        Troop9: 0,
+    },
+    Materials: {
+        Bronze: 20,
+        Silver : 20,
     },
     UnlockedBuildings: [],
     lastAward: Date.now(),
     dungeonEnd: Date.now() + 50000
+    
 }
 
 class Data{
@@ -15,6 +31,7 @@ class Data{
             localStorage.setItem('data', JSON.stringify(baseData));
             playerData = localStorage.getItem('data');
         }else{
+            console.log("?");
             playerData = this.fixData(JSON.parse(playerData), baseData);
             localStorage.setItem('data', JSON.stringify(playerData));
         }

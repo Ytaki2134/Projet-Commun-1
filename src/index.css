@@ -1,0 +1,119 @@
+#Recruit-Menu {
+    display:block;
+    width:500px;
+    height:400px;
+    padding: 5px;
+    position: fixed;
+    top:calc(30% - 100px);
+    left:calc(30% - 150px);
+    background: #95a595;
+  }
+
+.Recruit-Title {
+  border-bottom: 1px solid black;
+}
+
+.Menu-Title {
+  font-size: 2.2em;
+  margin-block-start: 0.42em;
+  margin-block-end: 0.42em;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Currency-Holder {
+  position: absolute;
+  left: 3.5%;
+  padding: 3px 5px 3px 5px;
+  border: 1px solid black;
+}
+
+.Currency-Icon {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.h-null {
+  margin: 0%;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 29%;
+  height: 100px;
+  padding: 0 10px;
+  margin: 5px 0;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+  margin: 0 -5px;
+  width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  height: 100%;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.Card-Image {
+  width: 137px;
+  height: 92px;
+  border: 4px solid black;
+}
+
+.Card-Bottom {
+  position: relative;
+  bottom: 37%;
+  text-align: left;
+  justify-content: flex-start; 
+}
+
+.Unit-Cost {
+  display: flex;
+  flex-direction: row;  
+  padding: 2px 6px 1px 3px;
+  margin: 0 10px;
+  background-color: #b49051;
+}
+
+.Cost-Icon {
+  max-height: 20px;
+  max-width: 20px;
+}
+
+.Recruit-Quantity {
+  position: absolute;
+  right: 3.7%;
+  top: 13%;
+}
+
+.Quantity-Font {
+  font-size: 100%;
+  padding: 3%;
+  border: 1px solid black;
+}
+
+.Select-Quantity {
+  border-top: 0px solid;
+}
+
+.brightness { 
+  filter: brightness(0.25); 
+}

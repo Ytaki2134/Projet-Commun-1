@@ -9,8 +9,7 @@ export default class Game{
             type: Phaser.WEBGL,
             width: 1200,
             height: 800,
-            backgroundColor: '#2d2d2d',
-            parent: 'phaser-example',
+            backgroundColor: '#6BBFF6',
             scene: {
                 preload: this.preload,
                 create: this.create,
@@ -28,6 +27,12 @@ export default class Game{
     preload(){
         this.load.image('field', 'image/field.png');
         this.load.image('built', 'image/built.png');
+        this.load.image('popup', 'image/minion-parchemin.png');
+        this.load.image('stable', 'image/construction.png');
+        this.load.image('materialButton', 'image/parchemin1.png');
+        this.load.image('kamos', 'image/parchemin2.png');
+        this.load.image('pop', 'image/parchemin3.png');
+        this.load.spritesheet('building', 'image/building.01.png', { frameWidth: 791, frameHeight: 676 });
     
         this.load.image('base_tiles', 'public/assets/tiles.png')
     
@@ -53,12 +58,7 @@ export default class Game{
         }
 
         //objects layers
-        console.log(map.getObjectLayer('Object Layer 1'));
-        this.objectLayer = map.getObjectLayer('Object Layer 1')['objects'];
-        this.objectLayer.forEach(object => {
-            console.log(object);
-        })
-
+       
         //Classes
         window.Game.BuildingsObject.main();
 
