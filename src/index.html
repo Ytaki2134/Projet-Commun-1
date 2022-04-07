@@ -5,45 +5,89 @@
         
         <link rel="stylesheet" href="./style/style.css">
     </head>
+
     <body>
-
+        <div id="currencies">
+            <div id="materials-amount"><p >Materials</p></div>
+            <div id="money"><p ></p></div>
+            <div id="rendings-amount"><p >Rendings</p></div>
+        </div>
+           
         <div id="construction" class="popup"  style="display: none">
-            <h4 id="name"></h4>
-            <p id="price"></p>
-            <p id="rendings"></p>
             <img id="image_details" src="" alt="">
-            <button type="submit" id="close" onclick="">X</button>
-            <button type="submit" id="build-button" onclick="">Build</button>
-        </div>
-
-        <div id="details" class="popup"  style="display: none">
-            <h4>Building</h4>
-            <h4 id="name-details"></h4>
-            <img id="image-details" src="./image/yow.png" alt="">
-            <p id="rendings-details"></p>
-            
-            <button type="submit" id="close-details" onclick="">X</button>
-        </div>
-
-        <div id="construction" class="popup" style="display: none">
-            <img id="image_details" src="" alt="">
-            <h4 id="name"></h4>
+            <h4 id="name"></h4> 
             <p id="price"></p>
             <p id="materials"></p>
             <p id="rendings"></p>
             <img id="image_details" src="" alt="">
-            <button type="submit" id="close" onclick="">X</button>
             <button type="submit" id="build-button" onclick="">Build</button>
         </div>
-    
-        <div id="details" class="popup" style="display: none">
+
+        <div id="details" class="popup"  style="display: none"> 
             <h4>Building</h4>
             <h4 id="name-details"></h4>
             <img id="image-details" src="./image/yow.png" alt="">
             <p id="rendings-details"></p>
             <p id="time"></p>
             <button type="submit" id="expedition" style="display : none" onclick="">Launch expedition</button>
-            <button type="submit" id="close-details" onclick="">X</button>
+        </div>
+
+        <div id="materials_popup" class="popup"  style="display: none"> 
+            <p id="Wood"></p>
+            <p id="Silver"></p>
+            
+            <p id="Gems"></p>
+        </div>
+
+
+        <div id="Recruit-Menu" style="display: none">
+            <div class="Recruit-Title flex">
+                <h1 class="Menu-Title">
+                    Recrutement
+                </h1>
+                <div class="Currency-Holder flex">
+                    <img class="Currency-Icon" src="image/3bf2be9160f1cd10cb04c3fb3gfdggdsggfdedb5c4_2.png"
+                        alt="Currency Icon">
+                    <h2 class="h-null" id="Currency-Counter"></h2>
+                </div>
+                <div class="Recruit-Quantity flex">
+                    <h2 class="Quantity-Font h-null Select-Quantity" id="First-Select">&#215;1</h2>
+                    <h2 class="Quantity-Font h-null" id="Second-Select">&#215;10</h2>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="row" id="Card-Wrapper"></div>
+            </div>
+
+            <div id="details" class="popup"  style="display: none">
+                <h4>Building</h4>
+                <h4 id="name-details"></h4>
+                <img id="image-details" src="./image/yow.png" alt="">
+                <p id="rendings-details"></p>
+                
+                <button type="submit" id="close-details" onclick="">X</button>
+            </div>
+
+            <div id="construction" class="popup" style="display: none">
+                <img id="image_details" src="" alt="">
+                <h4 id="name"></h4>
+                <p id="price"></p>
+                <p id="materials"></p>
+                <p id="rendings"></p>
+                <img id="image_details" src="" alt="">
+                <button type="submit" id="close" onclick="">X</button>
+                <button type="submit" id="build-button" onclick="">Build</button>
+            </div>
+        
+            <div id="details" class="popup" style="display: none">
+                <h4>Building</h4>
+                <h4 id="name-details"></h4>
+                <img id="image-details" src="./image/yow.png" alt="">
+                <p id="rendings-details"></p>
+                <p id="time"></p>
+                <button type="submit" id="expedition" style="display : none" onclick="">Launch expedition</button>
+                <button type="submit" id="close-details" onclick="">X</button>
+            </div>
         </div>
 
         <script type="module" src="./main.js"></script>

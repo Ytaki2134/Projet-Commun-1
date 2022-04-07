@@ -1,19 +1,18 @@
-<<<<<<< HEAD
 .popup  {
-    display:block;
-    width:300px;
-    height: 200px;
-    padding: 5px 20px 20px 10px;
-    position: fixed;
-    top:calc(50% - 100px);
-    left:calc(50% - 150px);
-    background: #ff00ff;
-  }
+  display:block;
+  width:300px;
+  height: 200px;
+  padding: 5px 20px 20px 10px;
+  position: fixed;
+  top:calc(50% - 100px);
+  left:calc(50% - 150px);
+  background: #ff00ff;
+}
 
-  #upgrade {
-      background:#dcf646!important;
-  }
-=======
+#upgrade {
+    background:#dcf646!important;
+}
+
 #Recruit-Menu {
   display: block;
   width: 500px;
@@ -162,4 +161,25 @@ canvas {
 .txte {
   position: absolute;
 }
->>>>>>> d86c5559115497caf897fa56fda4475e6061947f
+
+#currencies {
+  top:30px;
+  left: 25%
+}
+#currencies #materials-amount{
+  position:absolute;
+  left: 25%;
+  top: 30px;
+}
+
+#currencies #money{
+position:absolute;
+left: 35%;
+top: 50px;
+}
+
+#currencies #rendings-amount{
+position:absolute;
+left: 45%;
+top: 30px;
+}

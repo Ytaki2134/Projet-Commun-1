@@ -1,6 +1,6 @@
 const baseData = {
     Currency: {
-        Gold: 3000,
+        Gold: 5000,
         Crystals: 0,
     },
     Troops: {
@@ -14,9 +14,9 @@ const baseData = {
         Troop8: 0,
         Troop9: 0,
     },
-    Materials: {
-        Bronze: 20,
-        Silver : 20,
+    Materials:{
+        Wood: 500,
+        Silver : 327,
     },
     UnlockedBuildings: [],
     lastAward: Date.now(),
