@@ -1,11 +1,11 @@
 const baseData = {
     Currency: {
-        Gold: 1600,
+        Gold: 5000,
         Crystals: 0,
     },
-    UnlockedBuildings: [
-
-    ]
+    UnlockedBuildings: [],
+    lastAward: Date.now()
+    
 }
 
 class Data{

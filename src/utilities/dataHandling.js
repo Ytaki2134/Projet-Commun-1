@@ -4,7 +4,8 @@ const baseData = {
         Crystals: 0,
     },
     UnlockedBuildings: [],
-    lastAward: Date.now()
+    lastAward: Date.now(),
+    dungeonEnd: Date.now() + 50000
 }
 
 class Data{
