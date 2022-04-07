@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/RobxSoft/Projet-Commun-1#readme",
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser3-plugin-isometric": "0.0.7",
+    "phaser3-rex-plugins": "^1.1.68"
   }
 }
