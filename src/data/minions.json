@@ -1,39 +1,17 @@
 [
     {
-        "image":"pictures/unknown.png",
-        "price":"100"
+        "image":"image/unknown.png",
+        "price":"100",
+        "id":"1"
     },
     {
-        "image":"pictures/unknown1.png",
-        "price":"250"
+        "image":"image/unknown1.png",
+        "price":"250",
+        "id":"2"
     },
     {
-        "image":"pictures/unknown2.png",
-        "price":"380"
-    },
-    {
-        "image":"pictures/unknown3.png",
-        "price":"540"
-    },
-    {
-        "image":"pictures/unknown4.png",
-        "price":"800"
-    },
-    {
-        "image":"pictures/unknown5.png",
-        "price":"1400"
-    },
-    {
-        "image":"pictures/unknown6.png",
-        "price":"1850"
-    },
-    {
-        "image":"pictures/unknown7.png",
-        "price":"2500"
-    },
-    {
-        "image":"pictures/unknown8.png",
-        "price":"5000"
+        "image":"image/unknown2.png",
+        "price":"380",
+        "id":"3"
     }
-    
 ]

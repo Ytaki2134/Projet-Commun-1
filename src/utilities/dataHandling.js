@@ -1,6 +1,6 @@
 const baseData = {
     Currency: {
-        Gold: 1840,
+        Gold: 5000,
         Crystals: 0,
     },
     Troops: {
@@ -14,6 +14,14 @@ const baseData = {
         Troop8: 0,
         Troop9: 0,
     },
+    Materials:{
+        Wood: 500,
+        Silver : 327,
+    },
+    UnlockedBuildings: [],
+    lastAward: Date.now(),
+    dungeonEnd: Date.now() + 50000
+    
 }
 
 class Data{
@@ -35,10 +43,8 @@ class Data{
     fixData(playerData, base){
         for (const [key, value] of Object.entries(base)) {
             if(playerData[key] === undefined){
-                playerData[key] = value
-                console.log(key);
+                playerData[key] = value;
             } else if(typeof(value)=="object" && value != null){
-                console.log(key);
                 playerData[key] = this.fixData(playerData[key], value);
             }
         }
