@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "jsx-dom": "^8.0.1-beta.5",
-    "phaser": "^3.55.2"
+    "phaser3-plugin-isometric": "0.0.7",
+    "phaser3-rex-plugins": "^1.1.68"
   }
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+        <link rel="stylesheet" href="./style/style.css">
+    </head>
+    <body>
+
+        <div id="input-box" style="display: none">
+            <h4>Want to build a new stuff ?</h4>
+            <button type="submit" id="close" onclick="">X</button>
+            <button type="submit" id="build" onclick="">BUILD</button>
+
+        </div>
+
+        <script>
+        var config = {
+            type: Phaser.AUTO,
+            width: 1920,
+            height: 1080,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 200 }
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create
+            }
+        };
+
+        var game = new Phaser.Game(config);
+
+        function preload ()
+        {
+            //this.load.setBaseURL('http://labs .phaser.io');
+            this.load.image('background', 'image/background.png');
+            this.load.image('field', 'image/field.png');
+            this.load.image('built', 'image/built.png');
+        }
+
+        function create ()
+        {   
+
+            var argent = 200; // simulation de l'argent de l'utilisateur
+            this.add.image(900, 485, 'background');
+
+            let field = [this.add.image(400, 300, 'field'), "build", 1000]; // je suppose qu'il y aura une table "batiment" dans la bdd et que ca va etre les charac, donc pour l'instant array pour simuler
+            let alreadyBuilt = [this.add.image(0, 0, 'field'), "no_build", 1000]   ; 
+
+            field[0].setInteractive();
+            alreadyBuilt[0].setInteractive();
+
+
+            field[0].on('pointerdown', () => checkBuilding(field,argent)) // je passe en param l'argent pour que toutes mes fonctions cette var
+            alreadyBuilt[0].on('pointerdown', () => checkBuilding(alreadyBuilt[1]))
+
+
+        }
+
+        function checkBuilding(building,argent)
+        {   
+            switch (building[1]){
+                case "build":
+                    displayBuildWindow(building,argent)
+                    break;
+                case "alreadyBuilt":
+                    //code    
+            }
+        }
+        function construire(building,popup,argent){
+            //building[0] = add.image(400, 300, 'built')
+            let prix = building[2];
+            if (argent >= prix)
+            {
+                argent -= prix;
+                building[1] = "alreadyBuilt";
+                popup.style.display = 'none';
+                window.alert(argent)
+            }
+            else
+            {
+                popup.style.display = 'none';
+                window.alert("il vous manque " + (prix - argent) + " or")
+            }
+
+        }
+        function displayBuildWindow (building,argent)
+        {
+            
+            let popup = document.getElementById('input-box');
+            if (popup && popup.style.display === 'none' ){
+                popup.style.display = 'block';
+            }
+            button = document.getElementById("close");
+            button.addEventListener("click", () => (
+                popup.style.display = 'none'
+            ))
+            build = document.getElementById("build");
+            build.addEventListener("click", () => construire(building,popup,argent))
+        
+        }
+        </script>
+
+    </body>
+</html>

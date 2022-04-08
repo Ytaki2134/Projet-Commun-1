@@ -1,0 +1,14 @@
+.popup  {
+    display:block;
+    width:500;
+    height: 500;
+    padding: 5px 20px 20px 10px;
+    position: fixed;
+    top:calc(50% - 100px);
+    left:calc(50% - 150px);
+    background: #ff00ff;
+  }
+
+  #details {
+      background:#dcf646!important;
+  }

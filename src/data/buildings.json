@@ -1,69 +1,64 @@
-
-
-[   
+[
     {
         "id": 1,
-        "name":"dungeon",
-        "status":"build",
+        "name": "dungeon",
+        "status": "build",
         "image": "building",
         "image_src": "./image/built.png",
         "price": 1000,
-        "pos_x": 400,
-        "pos_y": 500,
+        "pos_x": 1000,
+        "pos_y": 900,
         "rendings": 500,
-        "materials" : {
+        "materials": {
             "Wood": 20,
-            "Silver" : 20
+            "Silver": 20
         },
-        "expedition_time": 5 
-
-        
-        
+        "expedition_time": 5
     },
     {
         "id": 2,
-        "name":"wheel",
-        "status":"build",
+        "name": "wheel",
+        "status": "build",
         "image": "building",
         "image_src": "./image/built.png",
         "price": 200,
         "pos_x": 200,
         "pos_y": 200,
         "rendings": 20,
-        "materials" : {
+        "materials": {
             "Wood": 20,
-            "Silver" : 20
+            "Silver": 20
         }
+        
     },
     {
         "id": 3,
-        "name":"yass",
-        "status":"build",
+        "name": "yass",
+        "status": "build",
         "image": "building",
         "image_src": "./image/built.png",
         "price": 1000,
         "pos_x": 100,
         "pos_y": 100,
         "rendings": 1651,
-        "materials" : {
+        "materials": {
             "Wood": 20,
-            "Silver" : 20
+            "Silver": 20
         }
     },
     {
         "id": 4,
-        "name":"lessgo",
-        "status":"build",
+        "name": "lessgo",
+        "status": "build",
         "image": "building",
         "image_src": "./image/built.png",
         "price": 1500,
         "pos_x": 700,
         "pos_y": 700,
         "rendings": 89,
-        "materials" : {
+        "materials": {
             "Wood": 20,
-            "Silver" : 20
+            "Silver": 20
         }
     }
-    
 ]
