@@ -1,4 +1,3 @@
-import { disableAll, PlayerData } from "./building.js";
 
 
 function displayMaterials(popupImage) {

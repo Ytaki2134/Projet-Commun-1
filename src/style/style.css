@@ -150,25 +150,28 @@ canvas {
   left: 25%
 }
 
-#currencies #materials-amount {
-  position: absolute;
-  left: 46%;
-  top: 4%;
-  height: 18.4px;
-}
-
-#currencies #money {
-  position: absolute;
+.money {
   left: 28.7%;
   top: 4%;
-  height: 18.4px;
+  height: 10%;
+  z-index:0;
 }
 
-#currencies #rendings-amount {
-  position: absolute;
-  left: 11%;
+.Money-text {
   top: 4%;
-  height: 18.4px;
+}
+
+.rendings-amount {
+  left: 12%;
+  top: 2%;
+  height: 10%;
+  z-index:0;
+}
+
+.Rendings-Text {
+  top: 5.7%;
+  left: 19.4%;
+  z-index:1;
 }
 
 .Switch-Button {

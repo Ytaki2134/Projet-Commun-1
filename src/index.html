@@ -2,16 +2,19 @@
 <html>
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser-arcade-physics.min.js"></script>
     <script type="module" src="main.js"></script>
     <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
     <div id="currencies">
+            <p class="h-null Rendings-Text absolute">Rendings</p>
+            <img class="rendings-amount absolute" id="rendings-amount" src="./image/parchemin3.png" alt="">
+        <div class="Money-text absolute" id="money"><p></p></div>
+        <img class="money absolute" src="./image/parchemin2.png" alt="">
         <div id="materials-amount">Materials</div>
-        <div id="money"><p></p></div>
-        <div id="rendings-amount"><p>Rendings</p></div>
+        <img id="materials-amount"src="./image/parchemin1.png" alt="">
     </div>
            
     <div id="construction" class="popup"  style="display: none">

@@ -3,8 +3,8 @@ import { MAX_ZOOM, MIN_ZOOM, LAYERS } from "./utilities/global.js";
 import Buildings from "./module/building.js";
 import Units from "./module/Units.js";
 
-export default class Game{
-    constructor(){
+export default class Game {
+    constructor() {
         var config = {
             type: Phaser.WEBGL,
             width: 1200,
@@ -16,7 +16,7 @@ export default class Game{
                 update: this.update
             },
         };
-        
+
         window.Game = {
             game: new Phaser.Game(config),
             DataObject: new Data(),
@@ -26,30 +26,33 @@ export default class Game{
         }
     }
 
-    preload(){
+    preload() {
         this.load.image('field', 'image/field.png');
+        this.load.image('background', 'image/background.png');
         this.load.image('built', 'image/built.png');
         this.load.image('popup', 'image/minion-parchemin.png');
         this.load.image('stable', 'image/construction.png');
         this.load.image('materialButton', 'image/parchemin1.png');
         this.load.image('kamos', 'image/parchemin2.png');
         this.load.image('pop', 'image/parchemin3.png');
+        this.load.image('switchMenu', 'image/button.png');
+        this.load.image('close', 'image/close_button.png');
         this.load.image('popup2', 'image/donjon-parchemin.png');
         this.load.image('popupTrigger2', 'image/parchemin_menu.png');
         this.load.spritesheet('building', 'image/building.01.png', { frameWidth: 791, frameHeight: 676 });
-    
+
         this.load.image('base_tiles', 'public/assets/tiles.png')
-    
+
         // load the JSON file
         this.load.tilemapTiledJSON('map', 'public/assets/map.json')
-    
+
         window.Game.PlayerData = window.Game.DataObject.getData();
         for (const [key, value] of Object.entries(this)) {
             window.Game[key] = value
         }
     }
 
-    create(){
+    create() {
         //camera
         var cam = this.cameras.main;
         cam.setZoom(0.3);
@@ -57,7 +60,7 @@ export default class Game{
         //generating map
         var map = this.add.tilemap('map');
         var tileset1 = map.addTilesetImage('tiles', 'base_tiles');
-        for (let i=1; i<LAYERS; i++) {
+        for (let i = 1; i < LAYERS; i++) {
             map.createLayer('Tile Layer ' + i, [tileset1]);
         }
 
@@ -103,21 +106,29 @@ export default class Game{
         //currency handler
         let pos = 0;
         let goldCurrencyHtml = document.getElementById("Currency-Counter");
+        let goldCurrencyHtml2 = document.getElementById("Exp-Currency-Counter");
         console.log(goldCurrencyHtml);
 
-        for (const [key, value] of Object.entries(window.Game.PlayerData.Currency)) {
-            let txt = this.add.text(100*pos, 100, key+' : '+value, { font: '"Press Start 2P"' });
-            pos += 1;
+        goldCurrencyHtml.addEventListener('DOMSubtreeModified', function () {
+            var MutationObserver = window.MutationObserver
+                || window.WebKitMutationObserver
+                || window.MozMutationObserver;
+            var observer = new MutationObserver(function () {
+                CardRefresh();
+            });
+            observer.observe(goldCurrencyHtml, { childList: true });
+        });
+    
+        goldCurrencyHtml2.addEventListener('DOMSubtreeModified', function () {
+            var MutationObserver = window.MutationObserver
+                || window.WebKitMutationObserver
+                || window.MozMutationObserver;
+            var observer = new MutationObserver(function () {
+                CardRefresh();
+            });
+            observer.observe(goldCurrencyHtml2, { childList: true });
+        });
 
-            if(key==="Gold"){
-                goldCurrencyHtml.innerHTML = value;
-            }
-
-            window.Game.DataObject.On(key, function (newValue) {
-                goldCurrencyHtml.innerHTML = newValue;
-            })
-        }
-       
         //Classes
         window.Game.BuildingsObject.main(popup);
         window.Game.UnitsObject.main();
@@ -129,14 +140,9 @@ export default class Game{
                     child.setVisible(false);
                 })
             ))
-            for (let i = 0; i < popupsHtml.length; i++) {
-                popupsHtml[i].style.display = "none"
-    
-            }
-            enableAll();
         })
 
-        this.input.on("pointermove", function (p) {            
+        this.input.on("pointermove", function (p) {
             if (!p.isDown) return;
             cam.scrollX -= (p.x - p.prevPosition.x) / cam.zoom;
             cam.scrollY -= (p.y - p.prevPosition.y) / cam.zoom;
@@ -144,16 +150,29 @@ export default class Game{
 
         this.input.on('wheel', function (pointer, gameObjects, deltaX, deltaY, deltaZ) {
             let newZoom = cam._zoomY;
-            if(deltaY>0 && cam._zoomY < MAX_ZOOM){
+            if (deltaY > 0 && cam._zoomY < MAX_ZOOM) {
                 newZoom += 0.05;
-            }else if(deltaY<0 && cam._zoomY > MIN_ZOOM){
+            } else if (deltaY < 0 && cam._zoomY > MIN_ZOOM) {
                 newZoom -= 0.05;
             }
             cam.setZoom(newZoom);
         });
     }
 
-    update(){
-        
+    update() {
+        let gold = 0;
+
+        window.Game.PlayerData.Currency.Gold += gold
+
+        var CurrentGold = window.Game.PlayerData.Currency.Gold;
+        if (window.Game.PlayerData.Currency.Gold > 1000000) {
+            CurrentGold = (window.Game.PlayerData.Currency.Gold / 1000000).toFixed(2) + " M"
+        } else if (window.Game.PlayerData.Currency.Gold > 1000) {
+            CurrentGold = (window.Game.PlayerData.Currency.Gold / 1000).toFixed(2) + " K"
+        }
+
+        document.getElementById("money").innerHTML = CurrentGold;
+        document.getElementById("rendings-amount").innerHTML = gold + "/sec"
+        window.Game.DataObject.getData()
     }
 }
