@@ -23,6 +23,8 @@ export default class Buildings{
             window[obj.name].setInteractive().on('pointerdown', () => this.checkBuilding(obj));
             window[obj.name].setFrame(0);
         });
+
+        dungeon.setScale(0.5)
     
         if (this.PlayerData.UnlockedBuildings != [])
         {
@@ -118,7 +120,7 @@ export default class Buildings{
         let prix = building.price;
         let materialsToHave = building.materials
 
-        if (this.PlayerData.Currency.Gold >= prix && this.PlayerData.UnlockedBuildings.includes(building.id) == false && verify(materialsToHave) == true) {
+        if (this.PlayerData.Currency.Gold >= prix && this.PlayerData.UnlockedBuildings.includes(building.id) == false && this.verify(materialsToHave) == true) {
 
             if (building.id == selectedBuilding) { // ici
                 this.PlayerData.Currency.Gold -= prix;
@@ -149,7 +151,7 @@ export default class Buildings{
         }
         let buildButton = document.getElementById("build-button");
         buildButton.addEventListener("click", () => {
-            construire(building, selectedBuilding);
+            this.construire(building, selectedBuilding);
             buildPopup.forEach(element => element.setVisible(false))
             popup.style.display = "none";
         })

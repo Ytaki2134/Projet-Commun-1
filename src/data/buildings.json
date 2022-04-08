@@ -1,64 +1,67 @@
-[
+[   
     {
         "id": 1,
-        "name": "dungeon",
-        "status": "build",
-        "image": "building",
-        "image_src": "./image/built.png",
-        "price": 1000,
-        "pos_x": 1000,
-        "pos_y": 900,
-        "rendings": 500,
-        "materials": {
-            "Wood": 20,
-            "Silver": 20
+        "name":"dungeon",
+        "status":"alreadyBuilt",
+        "image": "dungeon",
+        "image_src": "./image/maison_hante_2.png",
+        "price": 0,
+        "pos_x": 2450,
+        "pos_y": 1450,
+        "rendings": 0,
+        "materials" : {
+            "Wood": 0,
+            "Silver" : 0
         },
-        "expedition_time": 5
-    },
-    {
-        "id": 2,
-        "name": "wheel",
-        "status": "build",
-        "image": "building",
-        "image_src": "./image/built.png",
-        "price": 200,
-        "pos_x": 200,
-        "pos_y": 200,
-        "rendings": 20,
-        "materials": {
-            "Wood": 20,
-            "Silver": 20
-        }
+        "expedition_time": 5 
+
+        
         
     },
     {
+        "id": 2,
+        "name":"wheel",
+        "status":"build",
+        "image": "wheel",
+        "image_src": "./image/big-wheel.png",
+        "price": 15000,
+        "pos_x": 1200,
+        "pos_y": 500,
+        "rendings": 150,
+        "materials" : {
+            "Wood": 500,
+            "Silver" : 250
+        }
+    },
+    {
         "id": 3,
-        "name": "yass",
-        "status": "build",
-        "image": "building",
-        "image_src": "./image/built.png",
-        "price": 1000,
-        "pos_x": 100,
-        "pos_y": 100,
-        "rendings": 1651,
-        "materials": {
-            "Wood": 20,
-            "Silver": 20
+        "name":"carrousel",
+        "status":"build",
+        "image": "carrousel",
+        "image_src": "./image/carrousel.png",
+        "price": 5000,
+        "pos_x": -600,
+        "pos_y": 1600,
+        "rendings": 75,
+        "materials" : {
+            "Wood": 125,
+            "Silver" : 75
         }
     },
     {
         "id": 4,
-        "name": "lessgo",
-        "status": "build",
-        "image": "building",
-        "image_src": "./image/built.png",
-        "price": 1500,
-        "pos_x": 700,
-        "pos_y": 700,
-        "rendings": 89,
-        "materials": {
+        "name":"maison",
+        "status":"build",
+        "image": "maison",
+        "image_src": "./image/maison.png",
+        "price": 50,
+        "pos_x": -625,
+        "pos_y": 800,
+        "rendings": 20,
+        "materials" : {
             "Wood": 20,
-            "Silver": 20
+            "Silver" : 0
         }
     }
+    
 ]

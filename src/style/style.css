@@ -150,25 +150,46 @@ canvas {
   left: 25%
 }
 
-#currencies #materials-amount {
-  position: absolute;
-  left: 46%;
-  top: 4%;
-  height: 18.4px;
+.money {
+  left: 29.7%;
+  top: 2%;
+  height: 8%;
+  z-index: 0;
 }
 
-#currencies #money {
-  position: absolute;
-  left: 28.7%;
-  top: 4%;
-  height: 18.4px;
+.Money-text {
+  top: 4.5%;
+  left: 37%;
+  font-size: 2rem;
+  z-index: 1;
 }
 
-#currencies #rendings-amount {
-  position: absolute;
-  left: 11%;
-  top: 4%;
-  height: 18.4px;
+.rendings-amount {
+  left: 12%;
+  top: 2%;
+  height: 8%;
+  z-index: 0;
+}
+
+.Rendings-Text {
+  top: 4.5%;
+  left: 19.4%;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.materials-amount {
+  left: 48%;
+  top: 2%;
+  height: 8%;
+  z-index: 0;
+}
+
+.Materials-Text {
+  top: 4.5%;
+  left: 54.5%;
+  font-size: 2rem;
+  z-index: 1;
 }
 
 .Switch-Button {
@@ -202,6 +223,12 @@ canvas {
   height: 30%;
   left: 25%;
   top: 13%;
+}
+
+.MenuTrigger {
+  height: 14%;
+  bottom: 34%;
+  left: 12%;
 }
 
 .absolute {

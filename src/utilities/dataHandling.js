@@ -6,13 +6,7 @@ const baseData = {
     Troops: {
         Troop1: 0,
         Troop2: 0,
-        Troop3: 0,
-        Troop4: 0,
-        Troop5: 0,
-        Troop6: 0,
-        Troop7: 0,
-        Troop8: 0,
-        Troop9: 0,
+        Troop3: 0
     },
     Materials:{
         Wood: 500,
